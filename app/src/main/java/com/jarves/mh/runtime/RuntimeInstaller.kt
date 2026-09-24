@@ -106,7 +106,7 @@ class RuntimeInstaller(private val context: Context) {
 
     /** Returns the already verified runtime without performing network or update checks. */
     fun installedRuntime(): InstalledRuntime {
-        check(isInstalled()) { "Core runtime setup is incomplete. Reopen Mobile Harness to repair it." }
+        check(isInstalled()) { "Core runtime setup is incomplete. Reopen U&U to repair it." }
         return InstalledRuntime(
             proot = File(context.applicationInfo.nativeLibraryDir, "libproot.so"),
             rootfs = rootfs,
@@ -146,7 +146,7 @@ class RuntimeInstaller(private val context: Context) {
                 android.os.Build.SUPPORTED_ABIS,
                 System.getProperty("os.arch"),
             ),
-        ) { "Unsupported architecture: Mobile Harness requires an ARM64 device or ARM64 emulator" }
+        ) { "Unsupported architecture: U&U requires an ARM64 device or ARM64 emulator" }
         val proot = File(context.applicationInfo.nativeLibraryDir, "libproot.so")
         require(proot.canExecute()) { "The embedded PRoot launcher is unavailable" }
 
@@ -272,7 +272,7 @@ class RuntimeInstaller(private val context: Context) {
     suspend fun ensureGitHubCliInstalled(onProgress: suspend (RuntimeInstallProgress) -> Unit) {
         if (isGitHubCliInstalled()) return
         check(!BuildConfig.OFFLINE_RUNTIME_BUNDLES) {
-            "GitHub sign-in needs the PocketDev online APK."
+            "GitHub sign-in needs the U&U online APK."
         }
         writeResolver()
         downloads.mkdirs()
@@ -618,7 +618,7 @@ class RuntimeInstaller(private val context: Context) {
         var source = file.readText()
         if (callAfter in source && importAfter in source) return
         check(callBefore in source && importBefore in source) {
-            "DeepSeek Harness $DSH_VERSION is not compatible with this PocketDev build"
+            "DeepSeek Harness $DSH_VERSION is not compatible with this U&U build"
         }
         source = source.replace(importBefore, importAfter).replace(callBefore, callAfter)
         file.writeText(source)

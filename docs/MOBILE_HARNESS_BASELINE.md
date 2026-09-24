@@ -70,8 +70,10 @@ The baseline command was:
 | `testOnlineDebugUnitTest` | PASS — 54 tests; 0 failures, 0 errors |
 | `testOfflineDebugUnitTest` | PASS — 54 tests; 0 failures, 0 errors |
 | Instrumentation / device install test | NOT RUN — no Android device or emulator was available |
-| Baseline lint | Run separately; see final validation record |
+| `lintOnlineDebug` | PASS — clean detached baseline run; report contains 0 errors, 67 warnings, 1 hint |
 | Dedicated static-analysis/security CI | NOT FOUND in repository |
+
+The lint report includes inherited warnings such as synchronous `SharedPreferences.commit`, dependency-version notices, x86_64 16 KB page-alignment reporting for a bundled zstd native library, ARM64-only ChromeOS support, enabled JavaScript in the local project preview, and SDK checks. These are reported as warnings/hints, not lint errors. The clean comparison was run from the baseline commit in a detached worktree; this documentation-only baseline commit did not modify the app source.
 
 ## GitHub Actions and releases
 

@@ -81,6 +81,7 @@ import androidx.compose.ui.text.input.PasswordVisualTransformation
 import androidx.compose.ui.text.input.VisualTransformation
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import com.jarves.mh.BuildConfig
 import com.jarves.mh.model.DevStack
 import com.jarves.mh.model.ProviderKind
 import com.jarves.mh.model.ProviderProfile
@@ -746,8 +747,8 @@ private fun LegacySettingsScreen(
                             horizontalArrangement = Arrangement.SpaceBetween,
                             verticalAlignment = Alignment.CenterVertically,
                         ) {
-                            Text("Mobile Harness", fontWeight = FontWeight.Bold, fontSize = 15.sp)
-                            Text("v1.0.0", color = PocketOrange, fontWeight = FontWeight.SemiBold, fontSize = 13.sp)
+                            Text("U&U", fontWeight = FontWeight.Bold, fontSize = 15.sp)
+                            Text("v${BuildConfig.VERSION_NAME}", color = PocketOrange, fontWeight = FontWeight.SemiBold, fontSize = 13.sp)
                         }
                         Text(
                             "Autonomous AI Developer with native on-device Linux PRoot sandbox and Claude Code integration.",
